@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+	<arg name="generate_motion_pattern" default="$(find neato_localization)/config/generate_motion_pattern.yaml" />
+  <rosparam file="$(arg generate_motion_pattern)" command="load"/>
+  <node pkg="neato_localization" name="waypoint_publisher" type="generate_waypoints_for_motion.py"  output="screen">
+  </node>
+</launch>

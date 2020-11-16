@@ -1,0 +1,44 @@
+diff --git a/scripts/localizing_tracked_markers.py b/scripts/localizing_tracked_markers.py
+index 6fb4217..fc17328 100755
+--- a/scripts/localizing_tracked_markers.py
++++ b/scripts/localizing_tracked_markers.py
+@@ -12,11 +12,11 @@ from std_msgs.msg import String
+ from neato_localization.msg import NumPoints
+ from tf.transformations import euler_from_quaternion, quaternion_from_euler
+ 
+-
+-PIXEL_TO_WORLD_RATIO = 3.50
+-DISTANCE_CONSTANT_LONG = 3.50
+-DISTANCE_CONSTANT_CORNERS = .21
+-MAP_WIDTH = 2.50
++# Update this according to the physical setup of the environment -- all numbers in meters
++PIXEL_TO_WORLD_RATIO = 3.50 # was 3.50 became 3.50
++DISTANCE_CONSTANT_LONG = 3.50 # was 3.50 became 1.51
++DISTANCE_CONSTANT_CORNERS = 0.21 # was 0.21 became 0.19. This is the distance of the corners in the marker from center of the marker
++MAP_WIDTH = 2.50 # was 2.50 became 1.50 and then commented
+ REFERENCE_IDS = [0, 10]
+ 
+ 
+diff --git a/scripts/tracking_aruco_markers.py b/scripts/tracking_aruco_markers.py
+index 54ab9e3..62cd017 100755
+--- a/scripts/tracking_aruco_markers.py
++++ b/scripts/tracking_aruco_markers.py
+@@ -31,7 +31,7 @@ import glob
+ # Maximum number of robots in the scene
+ MAX_BOTS = 2
+ # 0 -> in-built camera, 1 -> external USB webcam
+-VIDEO_SOURCE_ID = 3 ##TODO: This should be parameterized
++VIDEO_SOURCE_ID = 2 ##TODO: This should be parameterized
+ WAIT_TIME = 1
+ 
+ 
+@@ -91,4 +91,4 @@ if __name__ == "__main__":
+ 	tracking_all_markers = rospy.Publisher("/tracked_all_markers", NumPoints, queue_size=10)
+ 	watch_dogs = Tracker()
+ 	while (True):
+-	  watch_dogs.track_every_frame()
+\ No newline at end of file
++	  watch_dogs.track_every_frame()
+
+
+Commit number - a903a59c114e21db56d9490ec02bcc5592996156
